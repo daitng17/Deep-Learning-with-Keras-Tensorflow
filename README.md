@@ -1,7 +1,9 @@
 # Projects using TensorFlow and Keras
 
-My deep learning projects and exercices using Keras and Tensorflow are uploaded here. Feel free to check them out and give me feedback on Google Colab.
+Machine learning projects and exercices using Keras, Tensorflow, and other ML libraries.
 
-References: 
-1. Deep Learning with Python (2nd Edition) by Francois Chollet.
-2. TensorFlow Developer Professional Specialization (Coursera).
+### References: 
+1. Deep Learning with Python (2nd Ed) by Francois Chollet.
+2. TensorFlow Core Tutorials https://www.tensorflow.org/tutorials/
+3. TensorFlow Developer Professional Specialization (Coursera).
+4. Hands-on Machine Learning with Sci-kit Learn, Keras, and TensorFLow (2nd Ed) by Geron.
