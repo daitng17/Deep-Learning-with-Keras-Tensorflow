@@ -51,7 +51,7 @@ test_labels = test_features.pop('MPG')
 
 # linear regression
 
-# one variable
+# one input
 horsepower = np.array(train_features['Horsepower'])
 horsepower_normalizer = preprocessing.Normalization(input_shape=[1,])
 horsepower_normalizer.adapt(horsepower)
@@ -80,7 +80,7 @@ def plot_loss(history):
     plt.grid(True)
     plt.show()
 
-plot_loss(history)
+# plot_loss(history)
 
 test_results = {}
 
@@ -100,4 +100,33 @@ def plot_horsepower(x, y):
     plt.legend()
     plt.show()
 
-plot_horsepower(x, y)
+# plot_horsepower(x, y)
+
+# multiple inputs
+
+normalizer = preprocessing.Normalization()
+normalizer.adapt(np.array(train_features))
+
+linear_model = keras.Sequential([
+    normalizer,
+    layers.Dense(units=1)
+])
+
+# check the weight matrices
+
+linear_model.layers[1].kernel
+
+linear_model.compile(optimizer=tf.optimizers.Adam(learning_rate=0.1), loss='mean_absolute_error')
+
+linear_history = linear_model.fit(
+    train_features, train_labels,
+    epochs=100,
+    verbose=2,
+    validation_split=0.2
+)
+
+plot_loss(linear_history)
+
+test_results['linear_model'] = linear_model.evaluate(
+    test_features, test_labels, verbose=0
+)
