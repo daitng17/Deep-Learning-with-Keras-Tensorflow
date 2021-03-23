@@ -1,0 +1,26 @@
+from scipy import stats
+
+#
+df_regression = df_sample[['Grade', 'StudyHours']].copy()
+
+# Get the regression slope and intercept
+m, b, r, p, se = stats.linregress(df_regression['StudyHours'], df_regression['Grade'])
+print('slope: {:.4f}\ny-intercept: {:.4f}'.format(m,b))
+print('so...\n f(x) = {:.4f}x + {:.4f}'.format(m,b))
+
+# Use the function (mx + b) to calculate f(x) for each x (StudyHours) value
+df_regression['fx'] = (m * df_regression['StudyHours']) + b
+
+# Calculate the error between f(x) and the actual y (Grade) value
+df_regression['error'] = df_regression['fx'] - df_regression['Grade']
+
+# Create a scatter plot of Grade vs StudyHours
+df_regression.plot.scatter(x='StudyHours', y='Grade')
+
+# Plot the regression line
+plt.plot(df_regression['StudyHours'],df_regression['fx'], color='cyan')
+
+# Display the plot
+plt.show()
+
+# ref: MS Learn
